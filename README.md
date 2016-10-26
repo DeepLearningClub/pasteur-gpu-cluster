@@ -11,7 +11,7 @@ To get access, you need to pass a short online course made by DSI in Pasteur. Ta
 Slurm is used as the schedule system, you can find the detailed usage [here](http://slurm.schedmd.com/).
 
 For using GPU nodes, you need specify these two options:
-* the QoS named gpu (time limit of 7 days for a job)
+* the qos option named gpu (time limit of 7 days for a job)
 * the gres option to indicate what you want.
 
 For example:
