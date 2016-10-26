@@ -47,8 +47,8 @@ On the cluster, you won't have root permission, so you need to use `pip` with `-
 # do not use sudo here
 pip install keras --user --upgrade
 ```
-### Test installation on submission mode
-As mentioned, do not run actuall code on submission node, but you can run a shell to test your installation:
+### Test installation on the submission node
+As mentioned, do not run your actuall code on the submission node, but you can run a shell to test your installation:
 ```
 KERAS_BACKEND=tensorflow ipython
 ```
