@@ -1,16 +1,30 @@
 # Deep Learning on GPU cluster in Pasteur
 
 ## GPU nodes on the new cluster
-Tars is the new cluster in Pasteur, 3 GPUs nodes are available from now on on tars (in the common partition).
-Slurm(http://slurm.schedmd.com/) are used as the schedule system.
+Tars is the new cluster in Pasteur, 3 GPUs nodes are available from now on on tars (in the common partition). There are 1 node with 8 teslaK80 and 2 nodes with 4 teslaM40 each for GPU based computing.
+
+The cluster is only open to users in Institut Pasteur.
+
+To get access, you need to pass a short online course made by DSI in Pasteur. Take the course [here](https://moocs.pasteur.fr/courses/Institut_Pasteur/DSI_01/1/about) with a good score, then send an email to informatique@pasteur.fr to ask permission to use the cluster(tars) and gpu nodes. 
 
 ## Slurm commands for GPU nodes
-You can start to test them using:
+Slurm is used as the schedule system, you can find the detailed usage [here](http://slurm.schedmd.com/).
+
+For using GPU nodes, you need specify these two options:
 * the QoS named gpu (time limit of 7 days for a job)
 * the gres option to indicate what you want.
 
-There are 1 node with 8 teslaK80 and 2 nodes with 4 teslaM40 each.
+For example:
+```
+salloc --qos=gpu --gres=gpu:1
+```
+
 If you want to submit on a specific type of GPU, indicate it in the gres option like this: `--gres=gpu[:type]:nb_of_gpu`
+
+For example:
+```
+salloc --qos=gpu --gres=gpu:teslaK80:1
+```
 
 ## Getting start
 ### Connect to tars.pasteur.fr
