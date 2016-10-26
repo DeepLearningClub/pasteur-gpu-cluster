@@ -50,6 +50,8 @@ If you want a specific GPU type, specify it:
 sbatch  --qos=gpu --gres=gpu:teslaK80:1  ./test_cuda.sh
 ```
 # Question
-If you encountered any question, you may get help in the club slack channel https://deeplearningclub.slack.com/archives/technical .
+If you encountered any problem, you may get help in the [technical channel on slack](https://deeplearningclub.slack.com/messages/technical).
+
+If you haven't signup, [signup here](https://deeplearningclub.slack.com/signup).
 
 
