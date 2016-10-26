@@ -57,7 +57,7 @@ Again, within this shell, you shouldn't run any actuall code, because it's on th
 
 In order to run it on the GPU nodes, follow the next step.
 
-## Start an interactive session
+### Start an interactive session
 ```bash
 salloc --qos=gpu --gres=gpu:1
 ```
@@ -75,7 +75,7 @@ or start a python/ipython session with tensorflow enabled
 ipython
 ```
 
-## Run scripts (batch mode)
+### Run scripts (batch mode)
 After trying your code within interactive session, you can wrap your code into a python file, and then run it with `sbatch` or `srun` command:
 ```bash
 sbatch  --qos=gpu --gres=gpu:1  ./your_script
