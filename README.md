@@ -13,14 +13,50 @@ There are 1 node with 8 teslaK80 and 2 nodes with 4 teslaM40 each.
 If you want to submit on a specific type of GPU, indicate it in the gres option like this: `--gres=gpu[:type]:nb_of_gpu`
 
 ## Getting start
-### ssh to tars.pasteur.fr
+### Connect to tars.pasteur.fr
+Open a terminal, run:
 ```bash
 ssh USER_NAME@tars.pasteur.fr
 ```
-### load modules for deep learning (with tensorflow)
+Now, you are on a intermediate node named submission node.
+
+Notice that, you shouldn't run any computational command on this node, it's only for sending command to computation node.
+
+### Load modules for deep learning (with tensorflow)
 ```bash
 module load cuda/7.5.18 cudnn/v4 test/tensorflow/0.9.0 Python/2.7.11
 ```
+### Install Keras for Deep Learning
+On the cluster, you won't have root permission, so you need to use `pip` with `--user`.
+```bash
+# install keras into user home
+# do not use sudo here
+pip install keras --user --upgrade
+```
+### Test installation on submission mode
+As mentioned, do not run actuall code on submission node, but you can run a shell to test your installation:
+```
+KERAS_BACKEND=tensorflow ipython
+```
+If you type:
+```python
+import keras
+```
+You should see:
+```
+Using TensorFlow backend.
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcurand.so.7.5 locally
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcuda.so locally
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcufft.so.7.5 locally
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcudnn.so.4 locally
+I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library libcublas.so.7.5 locally
+```
+This means, you are ready to go.
+
+Again, within this shell, you shouldn't run any actuall code, because it's on the submission node, so it doesn't even have a GPU.
+
+In order to run it on the GPU nodes, follow the next step.
+
 ## Start an interactive session
 ```bash
 salloc --qos=gpu --gres=gpu:1
