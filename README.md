@@ -25,7 +25,6 @@ For example:
 ```
 salloc --qos=gpu --gres=gpu:teslaK80:1
 ```
-
 ## Getting start
 ### Connect to tars.pasteur.fr
 Open a terminal, run:
@@ -71,7 +70,7 @@ I tensorflow/stream_executor/dso_loader.cc:108] successfully opened CUDA library
 ```
 This means, you are ready to go.
 
-Again, within this shell, you shouldn't run any actuall code, because it's on the submission node, so it doesn't even have a GPU.
+Again, within this shell, you shouldn't run any actual code, because it's on the submission node, so it doesn't even have a GPU.
 
 In order to run it on the GPU nodes, follow the next step.
 
