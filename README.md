@@ -52,7 +52,7 @@ pip install keras --user --upgrade
 * Note: everything installed with pip should be automatically loaded when you have Python module loaded.
 
 ### Test installation on the submission node
-As mentioned, do not run your actuall code on the submission node, but you can run a shell to test your installation:
+As mentioned, do not run your actual code on the submission node, but you can run a shell to test your installation:
 ```
 KERAS_BACKEND=tensorflow ipython
 ```
