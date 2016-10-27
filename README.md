@@ -40,6 +40,8 @@ Notice that, you shouldn't run any computational command on this node, it's only
 ```bash
 module load cuda/7.5.18 cudnn/v4 test/tensorflow/0.9.0 Python/2.7.11
 ```
+* Note: you will need to load modules(with the previous command) each time you connect to the cluster.
+
 ### Install Keras for Deep Learning
 On the cluster, you won't have root permission, so you need to use `pip` with `--user`.
 ```bash
@@ -47,6 +49,8 @@ On the cluster, you won't have root permission, so you need to use `pip` with `-
 # do not use sudo here
 pip install keras --user --upgrade
 ```
+* Note: everything installed with pip should be automatically loaded when you have Python module loaded.
+
 ### Test installation on the submission node
 As mentioned, do not run your actuall code on the submission node, but you can run a shell to test your installation:
 ```
