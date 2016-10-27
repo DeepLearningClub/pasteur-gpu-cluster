@@ -39,7 +39,7 @@ Notice that, you shouldn't run any computational command on this node, it's only
 ```bash
 module load cuda/7.5.18 cudnn/v4 test/tensorflow/0.9.0 Python/2.7.11
 ```
-* Note: you will need to load modules(with the previous command) each time you connect to the cluster.
+* Note: you will need to load modules(with the previous command) every time you reconnect to the cluster.
 
 ### Install Keras for Deep Learning
 On the cluster, you won't have root permission, so you need to use `pip` with `--user`.
@@ -48,7 +48,7 @@ On the cluster, you won't have root permission, so you need to use `pip` with `-
 # do not use sudo here
 pip install keras --user --upgrade
 ```
-* Note: everything installed with pip should be automatically loaded when you have Python module loaded.
+* Note: you only need to run this once, everything installed with pip should be automatically loaded when you have Python module loaded.
 
 ### Test installation on the submission node
 As mentioned, do not run your actual code on the submission node, but you can run a shell to test your installation:
@@ -78,7 +78,7 @@ In order to run it on the GPU nodes, follow the next step.
 ```bash
 salloc --qos=gpu --gres=gpu:1
 ```
-If success, you will get a shell on the requested node, you will be able to run the following command to check the gpus you have on the node your are running.
+If success, you will get a shell on the requested node, you will be able to run the following command to check the gpus you have on the node you are running.
 ```bash
 nvidia-smi
 ```
@@ -99,10 +99,10 @@ srun --qos=gpu --gres=gpu:1 python ./your_command.py
 ```
 If you want a specific GPU type, specify it:
 ```
-sbatch  --qos=gpu --gres=gpu:teslaK80:1  ./test_cuda.sh
+sbatch --qos=gpu --gres=gpu:teslaK80:1  ./test_cuda.sh
 ```
 # Question
-If you encountered any problem, you may get help in the [technical channel on slack](https://deeplearningclub.slack.com/messages/technical).
+If you have any problem, you may get help in the [technical channel on slack](https://deeplearningclub.slack.com/messages/technical).
 
 If you haven't signup, [signup here](https://deeplearningclub.slack.com/signup).
 
