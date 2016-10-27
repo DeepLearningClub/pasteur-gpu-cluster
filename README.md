@@ -44,7 +44,7 @@ module load cuda/7.5.18 cudnn/v4 test/tensorflow/0.9.0 Python/2.7.11
 ### Install Keras for Deep Learning
 On the cluster, you won't have root permission, so you need to use `pip` with `--user`.
 ```bash
-# install keras into user home
+# install keras into your home folder
 # do not use sudo here
 pip install keras --user --upgrade
 ```
@@ -86,9 +86,9 @@ Then, you should be able to test with tensorflow
 ```
 python -c 'import tensorflow'
 ```
-or start a python/ipython session
+or start a python/ipython session (with tensorflow backend for keras)
 ```
-ipython
+KERAS_BACKEND=tensorflow ipython
 ```
 
 ### Run scripts (batch mode)
