@@ -78,16 +78,15 @@ In order to run it on the GPU nodes, follow the next step.
 ```bash
 salloc --qos=gpu --gres=gpu:1
 ```
-If success, you will get a shell on the requested node, you will be able to run:
+If success, you will get a shell on the requested node, you will be able to run the following command to check the gpus you have on the node your are running.
 ```bash
 nvidia-smi
 ```
-to check the gpus you have on the node your are running.
-Then, you should be able to run
+Then, you should be able to test with tensorflow
 ```
 python -c 'import tensorflow'
 ```
-or start a python/ipython session with tensorflow enabled
+or start a python/ipython session
 ```
 ipython
 ```
@@ -95,8 +94,8 @@ ipython
 ### Run scripts (batch mode)
 After trying your code within interactive session, you can wrap your code into a python file, and then run it with `sbatch` or `srun` command:
 ```bash
-sbatch  --qos=gpu --gres=gpu:1  ./your_script
-srun    --qos=gpu --gres=gpu:1  ./your_command
+sbatch --qos=gpu --gres=gpu:1 ./your_script.sh
+srun --qos=gpu --gres=gpu:1 python ./your_command.py
 ```
 If you want a specific GPU type, specify it:
 ```
