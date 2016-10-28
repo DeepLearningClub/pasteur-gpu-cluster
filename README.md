@@ -79,16 +79,18 @@ In order to run it on the GPU nodes, follow the next step.
 salloc --qos=gpu --gres=gpu:1
 ```
 If success, you will get a shell on the requested node, you will be able to run the following command to check the gpus you have on the node you are running.
+Notice that you will need prepend `srun` before your command, especially where there is GPU related command.
 ```bash
-nvidia-smi
+srun nvidia-smi
 ```
 Then, you should be able to test with tensorflow
 ```
-python -c 'import tensorflow'
+srun python -c 'import tensorflow'
 ```
 or start a python/ipython session (with tensorflow backend for keras)
 ```
-KERAS_BACKEND=tensorflow ipython
+# in this case, you want to set a env variable for this command line, you need to put it(them) before srun
+KERAS_BACKEND=tensorflow srun ipython
 ```
 
 ### Run scripts (batch mode)
