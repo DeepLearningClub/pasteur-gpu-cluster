@@ -90,7 +90,8 @@ srun python -c 'import tensorflow'
 or start a python/ipython session (with tensorflow backend for keras)
 ```
 # in this case, you want to set a env variable for this command line, you need to put it(them) before srun
-KERAS_BACKEND=tensorflow srun ipython
+# here --pty option is used because we want to interact with ipython
+KERAS_BACKEND=tensorflow srun --pty ipython
 ```
 
 ### Run scripts (batch mode)
