@@ -72,14 +72,32 @@ This means, you are ready to go.
 
 Again, within this shell, you shouldn't run any actual code, because it's on the submission node, so it doesn't even have a GPU.
 
-In order to run it on the GPU nodes, follow the next step.
+In order to run it on the GPU nodes, follow the next steps.
 
-### Start an interactive session
+### Run scripts
+Write your code in a python file, or you can use [mnist_mlp.py](mnist_mlp.py) as an example, and run the task with `srun`(with 1 GPU).
+```
+# replace ./mnist_mlp.py to your own file path
+srun --qos=gpu --gres=gpu:1 python ./mnist_mlp.py
+```
+If you want a specific GPU type, specify it:
+```
+srun --qos=gpu --gres=gpu:teslaK80:1  ./test_cuda.sh
+```
+
+If you want to launch multiple task, then you can use `sbatch`.
 ```bash
-salloc --qos=gpu --gres=gpu:1
+sbatch --qos=gpu --gres=gpu:1 ./your_script.sh
+```
+### Start an interactive session
+Sometimes, you want to debug or run your command interactively, you can use `salloc` before `srun`:
+```bash
+# --pty option is used because we want to interact with ipython
+salloc --pty --qos=gpu --gres=gpu:1
 ```
 If success, you will get a shell on the requested node, you will be able to run the following command to check the gpus you have on the node you are running.
-Notice that you will need prepend `srun` before your command, especially where there is GPU related command.
+
+After `salloc`,  you will need prepend `srun` before your command, especially where there is GPU related command.
 ```bash
 srun nvidia-smi
 ```
@@ -90,20 +108,9 @@ srun python -c 'import tensorflow'
 or start a python/ipython session (with tensorflow backend for keras)
 ```
 # in this case, you want to set a env variable for this command line, you need to put it(them) before srun
-# here --pty option is used because we want to interact with ipython
-KERAS_BACKEND=tensorflow srun --pty ipython
+KERAS_BACKEND=tensorflow srun ipython
 ```
 
-### Run scripts (batch mode)
-After trying your code within interactive session, you can wrap your code into a python file, and then run it with `sbatch` or `srun` command:
-```bash
-sbatch --qos=gpu --gres=gpu:1 ./your_script.sh
-srun --qos=gpu --gres=gpu:1 python ./your_command.py
-```
-If you want a specific GPU type, specify it:
-```
-sbatch --qos=gpu --gres=gpu:teslaK80:1  ./test_cuda.sh
-```
 # FAQ
 
 If you see the following error, it means your job needs more memory, you need to use '--mem' option.
