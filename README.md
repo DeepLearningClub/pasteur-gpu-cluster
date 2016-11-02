@@ -16,14 +16,14 @@ For using GPU nodes, you need specify these two options:
 
 For example:
 ```
-salloc --qos=gpu --gres=gpu:1
+srun --qos=gpu --gres=gpu:1 python ./your_script.py
 ```
 
 If you want to submit on a specific type of GPU, indicate it in the gres option like this: `--gres=gpu[:type]:nb_of_gpu`
 
 For example:
 ```
-salloc --qos=gpu --gres=gpu:teslaK80:1
+srun --qos=gpu --gres=gpu:teslaK80:1 python ./your_script.py
 ```
 ## Getting start
 ### Connect to tars.pasteur.fr
@@ -82,7 +82,7 @@ srun --qos=gpu --gres=gpu:1 python ./mnist_mlp.py
 ```
 If you want a specific GPU type, specify it:
 ```
-srun --qos=gpu --gres=gpu:teslaK80:1  ./test_cuda.sh
+srun --qos=gpu --gres=gpu:teslaK80:1 python ./mnist_mlp.py
 ```
 
 If you want to launch multiple task, then you can use `sbatch`.
