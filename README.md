@@ -104,8 +104,21 @@ If you want a specific GPU type, specify it:
 ```
 sbatch --qos=gpu --gres=gpu:teslaK80:1  ./test_cuda.sh
 ```
-# Question
-If you have any problem, you may get help in the [technical channel on slack](https://deeplearningclub.slack.com/messages/technical).
+# FAQ
+
+If you see the following error, it means your job needs more memory, you need to use '--mem' option.
+```
+slurmstepd: error: Step 5994415.2 exceeded memory limit (5174724 > 5120000), being killed
+salloc: Exceeded job memory limit
+```
+For example, you can try to allocate 32GB memory:
+```
+salloc --mem=32G --qos=gpu --gres=gpu:1
+# or, the same for srun and sbatch
+srun --mem=32G --qos=gpu --gres=gpu:1 python ./your_command.py
+```
+
+If you have any other problem, you may get help in the [technical channel on slack](https://deeplearningclub.slack.com/messages/technical).
 
 If you haven't signup, [signup here](https://deeplearningclub.slack.com/signup).
 
