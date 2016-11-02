@@ -78,7 +78,8 @@ In order to run it on the GPU nodes, follow the next steps.
 Write your code in a python file, or you can use [mnist_mlp.py](mnist_mlp.py) as an example, and run the task with `srun`(with 1 GPU).
 ```
 # replace ./mnist_mlp.py to your own file path
-srun --qos=gpu --gres=gpu:1 python ./mnist_mlp.py
+# --mem=20G means you want 20GB memory with the cpu on the node
+srun --mem=20G --qos=gpu --gres=gpu:1 python ./mnist_mlp.py
 ```
 If you want a specific GPU type, specify it:
 ```
