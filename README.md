@@ -37,7 +37,7 @@ Notice that, you shouldn't run any computational command on this node, it's only
 
 ### Load modules for deep learning (with tensorflow)
 ```bash
-module load cuda/7.5.18 cudnn/v4 test/tensorflow/0.9.0 Python/2.7.11
+module load cuda/8.0.0 cudnn/v5 test/tensorflow/0.11.0rc2 Python/2.7.11
 ```
 * Note: you will need to load modules(with the previous command) every time you reconnect to the cluster.
 
