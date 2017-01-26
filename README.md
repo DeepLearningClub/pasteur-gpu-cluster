@@ -1,5 +1,7 @@
 # Deep Learning on GPU cluster in Pasteur
 
+*** *UPDATE: there are 16 new Tesla P100 GPUs available.*
+
 ## GPU nodes on the new cluster(tars)
 Tars is the new cluster in Pasteur, 3 GPUs nodes are available from now on on tars (in the common partition). There are:
  * 4 tesla K80 on 1 node (since there are 2 gpus in 1 K80, so it's acutally 8)
