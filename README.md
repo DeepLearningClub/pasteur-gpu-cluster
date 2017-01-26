@@ -111,7 +111,7 @@ salloc --qos=gpu --gres=gpu:1
 ```
 If success, you will get a shell on the requested node, you will be able to run the following command to check the gpus you have on the node you are running.
 
-**After `salloc`,  you will need prepend `srun` before your command, especially where there is GPU related command.**
+**After `salloc`,  you will still need to prepend `srun` before your command, especially where there is GPU related command.**
 
 ```bash
 srun nvidia-smi
