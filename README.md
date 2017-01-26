@@ -3,8 +3,8 @@
 ## GPU nodes on the new cluster(tars)
 Tars is the new cluster in Pasteur, 3 GPUs nodes are available from now on on tars (in the common partition). There are:
  * 4 tesla K80 on 1 node (since there are 2 gpus in 1 K80, so it's acutally 8)
- * 8x tesla M40(24GB) on 2 nodes
- * 16x tesla P100(PCIe 16GB) on 2 nodes
+ * 8 tesla M40(24GB) on 2 nodes
+ * 16 tesla P100(PCIe 16GB) on 2 nodes
 
 In deep learning, the main reasons for choosing a GPU is TeraFLOPS and Memory. TeraFLOPS will affect your training time, and currently, most deep learning libraries only use single precision(FP32) for calculation, so we usually don't taking double precision into account. Memory size will mainly affect your batch size during training and your model size. Here are some key numbers for those GPUs on the cluster:
  * [tesla K80](http://www.anandtech.com/show/8729/nvidia-launches-tesla-k80-gk210-gpu): 2 gpus, 8.7 TFLOPS, 2x12GB memory
