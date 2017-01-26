@@ -3,8 +3,8 @@
 ## GPU nodes on the new cluster(tars)
 Tars is the new cluster in Pasteur, 3 GPUs nodes are available from now on on tars (in the common partition). There are:
  * 4 tesla K80 on 1 node (since there are 2 gpus in 1 K80, so it's acutally 8)
- * 8 tesla M40(24GB) on 2 nodes
- * 16 tesla P100(PCIe 16GB) on 2 nodes
+ * 8 tesla M40(24GB) on 2 nodes (4 each)
+ * 16 tesla P100(PCIe 16GB) on 2 nodes (8 each)
 
 In deep learning, the main reasons for choosing a GPU is TeraFLOPS and Memory. TeraFLOPS will affect your training time, and currently, most deep learning libraries only use single precision(FP32) for calculation, so we usually don't taking double precision into account. Memory size will mainly affect your batch size during training and your model size. Here are some key numbers for those GPUs on the cluster:
  * [tesla K80](http://www.anandtech.com/show/8729/nvidia-launches-tesla-k80-gk210-gpu): 2 gpus, 8.7 TFLOPS, 2x12GB memory
@@ -27,8 +27,10 @@ For example:
 srun --qos=gpu --gres=gpu:1 python ./your_script.py
 ```
 
-If you want to submit on a specific type of GPU, indicate it in the gres option like this: `--gres=gpu[:type]:nb_of_gpu`
-
+If you want to submit on a specific type of GPU, indicate it in the gres option like this: `--gres=gpu[:type]:nb_of_gpu`, the following options are available:
+ * teslaM40 (max: 4)
+ * teslaK80 (max: 8)
+ * teslaP100 (max: 8)
 For example:
 ```
 srun --qos=gpu --gres=gpu:teslaK80:1 python ./your_script.py
@@ -90,11 +92,7 @@ Write your code in a python file, or you can use [mnist_mlp.py](mnist_mlp.py) as
 # --mem=20G means you want 20GB memory with the cpu (not gpu)
 srun --mem=20G --qos=gpu --gres=gpu:1 python ./mnist_mlp.py
 ```
-If you want a specific GPU type, the following options are available:
- * teslaM40
- * teslaK80
- * teslaP100
-For example, you can specify that you want to use 1 tesla K80 for your job:
+You can then specify that you want to use 1 tesla K80 to run your python code:
 ```
 srun --qos=gpu --gres=gpu:teslaK80:1 python ./mnist_mlp.py
 ```
