@@ -1,9 +1,17 @@
 # Deep Learning on GPU cluster in Pasteur
 
-## GPU nodes on the new cluster
-Tars is the new cluster in Pasteur, 3 GPUs nodes are available from now on on tars (in the common partition). There are 1 node with 8 teslaK80 and 2 nodes with 4 teslaM40 each for GPU based computing.
+## GPU nodes on the new cluster(tars)
+Tars is the new cluster in Pasteur, 3 GPUs nodes are available from now on on tars (in the common partition). There are:
+ * 4 tesla K80 on 1 node (since there are 2 gpus in 1 K80, so it's acutally 8)
+ * 8x tesla M40(24GB) on 2 nodes
+ * 16x tesla P100(PCIe 16GB) on 2 nodes
 
-The cluster is only open to users in Institut Pasteur.
+In deep learning, the main reasons for choosing a GPU is TeraFLOPS and Memory. TeraFLOPS will affect your training time, and currently, most deep learning libraries only use single precision(FP32) for calculation, so we usually don't taking double precision into account. Memory size will mainly affect your batch size during training and your model size. Here are some key numbers for those GPUs on the cluster:
+ * [tesla K80](http://www.anandtech.com/show/8729/nvidia-launches-tesla-k80-gk210-gpu): 2 gpus, 8.7 TFLOPS, 2x12GB memory
+ * [tesla M40](http://www.anandtech.com/show/8729/nvidia-launches-tesla-k80-gk210-gpu): 7 TFLOPS, 12GB memory
+ * [tesla P100](http://www.anandtech.com/show/10433/nvidia-announces-pci-express-tesla-p100): 9.3 TFLOPS, 16GB memory
+
+Also note that, the cluster is only open to users in Institut Pasteur.
 
 To get access, you need to pass a short online course made by DSI in Pasteur. Take the course [here](https://moocs.pasteur.fr/courses/Institut_Pasteur/DSI_01/1/about) with a good score, then send an email to informatique@pasteur.fr to ask permission to use the cluster(tars) and gpu nodes. 
 
@@ -77,11 +85,16 @@ In order to run it on the GPU nodes, follow the next steps.
 ### Run scripts
 Write your code in a python file, or you can use [mnist_mlp.py](mnist_mlp.py) as an example, and run the task with `srun`(with 1 GPU).
 ```
+# the basic format is: srun --qos=gpu --gres=gpu[:type]:nb_of_gpu your command
 # replace ./mnist_mlp.py to your own file path
 # --mem=20G means you want 20GB memory with the cpu (not gpu)
 srun --mem=20G --qos=gpu --gres=gpu:1 python ./mnist_mlp.py
 ```
-If you want a specific GPU type, specify it:
+If you want a specific GPU type, the following options are available:
+ * teslaM40
+ * teslaK80
+ * teslaP100
+For example, you can specify that you want to use 1 tesla K80 for your job:
 ```
 srun --qos=gpu --gres=gpu:teslaK80:1 python ./mnist_mlp.py
 ```
@@ -90,6 +103,7 @@ If you want to launch multiple task, then you can use `sbatch`.
 ```bash
 sbatch --qos=gpu --gres=gpu:1 ./your_script.sh
 ```
+
 ### Start an interactive session
 Sometimes, you want to debug or run your command interactively, you can use `salloc` before `srun`:
 ```bash
