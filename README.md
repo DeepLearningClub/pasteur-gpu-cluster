@@ -107,8 +107,7 @@ sbatch --qos=gpu --gres=gpu:1 ./your_script.sh
 ### Start an interactive session
 Sometimes, you want to debug or run your command interactively, you can use `salloc` before `srun`:
 ```bash
-# --pty option is used because we want to interact with ipython
-salloc --pty --qos=gpu --gres=gpu:1
+salloc --qos=gpu --gres=gpu:1
 ```
 If success, you will get a shell on the requested node, you will be able to run the following command to check the gpus you have on the node you are running.
 
