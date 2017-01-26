@@ -111,7 +111,8 @@ salloc --qos=gpu --gres=gpu:1
 ```
 If success, you will get a shell on the requested node, you will be able to run the following command to check the gpus you have on the node you are running.
 
-After `salloc`,  you will need prepend `srun` before your command, especially where there is GPU related command.
+**After `salloc`,  you will need prepend `srun` before your command, especially where there is GPU related command.**
+
 ```bash
 srun nvidia-smi
 ```
@@ -138,6 +139,11 @@ salloc --mem=32G --qos=gpu --gres=gpu:1
 # or, the same for srun and sbatch
 srun --mem=32G --qos=gpu --gres=gpu:1 python ./your_command.py
 ```
+If you are using salloc, and your code couldn't find the GPU complaining something like:
+```
+E tensorflow/stream_executor/cuda/cuda_driver.cc:491] failed call to cuInit: CUDA_ERROR_NO_DEVICE
+```
+It's usually because you forgot to prepend `srun` before your command, you need to make sure that you need srun even in salloc mode. 
 
 If you have any other problem, you may get help in the [technical channel on slack](https://deeplearningclub.slack.com/messages/technical).
 
