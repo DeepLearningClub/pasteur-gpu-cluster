@@ -1,5 +1,7 @@
 # Deep Learning on GPU cluster in Pasteur
 
+*** *UPDATE: Tensorflow 1.0 installed on the cluster, thanks to Jean-Baptiste Denis.*
+
 *** *UPDATE: there are 16 new Tesla P100 GPUs available.*
 
 ## GPU nodes on the new cluster(tars)
@@ -49,7 +51,7 @@ Notice that, you shouldn't run any computational command on this node, it's only
 
 ### Load modules for deep learning (with tensorflow)
 ```bash
-module load cuda/8.0.0 cudnn/v5 test/tensorflow/0.11.0rc2 Python/2.7.11
+module load cuda/8.0.0 cudnn/v5 tensorflow/1.0.0-py2 Python/2.7.11
 ```
 * Note: you will need to load modules(with the previous command) every time you reconnect to the cluster.
 
