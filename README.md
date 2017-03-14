@@ -130,6 +130,13 @@ KERAS_BACKEND=tensorflow srun ipython
 
 # FAQ
 
+What are the name of those GPU nodes?
+
+ * tars-[300-301] teslaM40:4 total 8 M40 (maxwell)
+ * tars-302 teslaK80:8 total 8 K80 (keppler)
+ * tars-[303-304] teslaP100:8 total 16 P100 (pascal)
+
+
 If you see the following error, it means your job needs more memory, you need to use '--mem' option.
 ```
 slurmstepd: error: Step 5994415.2 exceeded memory limit (5174724 > 5120000), being killed
