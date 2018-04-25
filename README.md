@@ -22,13 +22,14 @@ To get access, you need to pass a short online course made by DSI in Pasteur. Ta
 ## Slurm commands for GPU nodes
 Slurm is used as the schedule system, you can find the detailed usage [here](http://slurm.schedmd.com/).
 
-For using GPU nodes, you need specify these two options:
+For using GPU nodes, you need specify these three options:
+* use the gpu partition
 * the qos option named gpu (time limit of 7 days for a job)
 * the gres option to indicate what you want.
 
 For example:
 ```
-srun --qos=gpu --gres=gpu:1 python ./your_script.py
+srun -p gpu --qos=gpu --gres=gpu:1 python ./your_script.py
 ```
 
 If you want to submit on a specific type of GPU, indicate it in the gres option like this: `--gres=gpu[:type]:nb_of_gpu`, the following options are available:
@@ -37,7 +38,7 @@ If you want to submit on a specific type of GPU, indicate it in the gres option 
  * teslaP100 (max: 8)
 For example:
 ```
-srun --qos=gpu --gres=gpu:teslaK80:1 python ./your_script.py
+srun -p gpu --qos=gpu --gres=gpu:teslaK80:1 python ./your_script.py
 ```
 ## Getting start
 ### Connect to tars.pasteur.fr
@@ -91,25 +92,25 @@ In order to run it on the GPU nodes, follow the next steps.
 ### Run scripts
 Write your code in a python file, or you can use [mnist_mlp.py](mnist_mlp.py) as an example, and run the task with `srun`(with 1 GPU).
 ```
-# the basic format is: srun --qos=gpu --gres=gpu[:type]:nb_of_gpu your command
+# the basic format is: srun -p gpu --qos=gpu --gres=gpu[:type]:nb_of_gpu your command
 # replace ./mnist_mlp.py to your own file path
 # --mem=20G means you want 20GB memory with the cpu (not gpu)
-srun --mem=20G --qos=gpu --gres=gpu:1 python ./mnist_mlp.py
+srun --mem=20G -p gpu --qos=gpu --gres=gpu:1 python ./mnist_mlp.py
 ```
 You can then specify that you want to use 1 tesla K80 to run your python code:
 ```
-srun --qos=gpu --gres=gpu:teslaK80:1 python ./mnist_mlp.py
+srun -p gpu --qos=gpu --gres=gpu:teslaK80:1 python ./mnist_mlp.py
 ```
 
 If you want to launch multiple task, then you can use `sbatch`.
 ```bash
-sbatch --qos=gpu --gres=gpu:1 ./your_script.sh
+sbatch -p gpu --qos=gpu --gres=gpu:1 ./your_script.sh
 ```
 
 ### Start an interactive session
 Sometimes, you want to debug or run your command interactively, you can use `salloc` before `srun`:
 ```bash
-salloc --qos=gpu --gres=gpu:1
+salloc -p gpu --qos=gpu --gres=gpu:1
 ```
 If success, you will get a shell on the requested node, you will be able to run the following command to check the gpus you have on the node you are running.
 
@@ -144,9 +145,9 @@ salloc: Exceeded job memory limit
 ```
 For example, you can try to allocate 32GB memory:
 ```
-salloc --mem=32G --qos=gpu --gres=gpu:1
+salloc -p gpu --mem=32G --qos=gpu --gres=gpu:1
 # or, the same for srun and sbatch
-srun --mem=32G --qos=gpu --gres=gpu:1 python ./your_command.py
+srun -p gpu --mem=32G --qos=gpu --gres=gpu:1 python ./your_command.py
 ```
 If you are using salloc, and your code couldn't find the GPU complaining something like:
 ```
